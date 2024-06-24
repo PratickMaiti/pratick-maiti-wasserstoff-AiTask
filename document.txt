@@ -1,0 +1,56 @@
+Importing Required Libraries and Modules:
+
+Warnings: To handle warning messages.
+LangChain: For tasks such as loading datasets, splitting text, creating embeddings, storing vectors, and setting up retrieval QA chains.
+Transformers: For tokenization, modeling, and pipeline creation.
+Requests: To make HTTP requests.
+Gradio: To build a user interface.
+
+2.WordPress API Loader
+
+The WordPressAPILoader class is designed to retrieve posts from a WordPress site.
+
+Initialization: Accepts base_url and post_type (defaulting to 'posts') as parameters.
+Fetching Posts: The fetch_posts method builds the URL using the provided parameters and retrieves posts through the WordPress REST API.
+Loading Posts: The load method invokes fetch_posts to obtain the data.
+
+3. Document Class
+
+Initialization: A simple class Document is defined to hold the content and metadata of each page.
+
+4.Text Splitting
+
+Text Splitter Initialization: The RecursiveCharacterTextSplitter is utilized to divide the text into 1000-character chunks with a 150-character overlap.
+Document Splitting: The dataset is split into individual documents using this method.
+
+5.Text Splitting
+
+Text Splitter Initialization: The RecursiveCharacterTextSplitter is used to break the text into 1000-character chunks with a 150-character overlap.
+Document Splitting: This method is applied to split the dataset into individual documents.
+
+6.Retriever
+
+Retriever Creation: Constructs a retriever object using the FAISS vector store.
+Search Configuration: Sets the retriever to return the top 4 most similar documents.
+
+7.Question Answering Model
+
+Model and Tokenizer: Initializes the tokenizer and model for question answering using "HuggingFaceH4/zephyr-7b-beta".
+Pipeline Definition: Sets up a question-answering pipeline utilizing the tokenizer and model.
+LLM Pipeline: Encapsulates the question-answering pipeline within a HuggingFacePipeline.
+
+8.Query Processing Function
+
+Query Handling: Defines a function answer_question to process user queries:
+Search: Utilizes the FAISS vector store to find similar documents.
+Context Creation: Merges the content of the search results to form a context.
+Question Answering: Employs the question-answering pipeline to derive the answer from the context.
+
+9.User Interface with Gradio
+
+Interface Creation: Sets up a Gradio interface for the chatbot.
+Function: Utilizes answer_question to process inputs.
+Inputs/Outputs: Defines text input and text output.
+Title/Description: Provides a title and description for the interface.
+Launching Interface: Initiates the Gradio interface.
+
